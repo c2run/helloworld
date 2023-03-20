@@ -1,4 +1,5 @@
-﻿namespace HelloWorld
+﻿using System.Collections.Generic;
+namespace HelloWorld
 {
     class Program
     {
@@ -14,8 +15,17 @@
             if(p.Length > 6)
             paisesUE.Add(p);
           }
-        //se puede hacer lo mismo con linq de manera reducida
-        var paisesUELLinq = paisesUE.Where(p => p.Length > 6);
+            //se puede hacer lo mismo con linq de manera reducida - intaxis basada en métodos
+            var paisesUELLinq = paisesUE.Where(p => p.Length > 6);
+            Console.WriteLine("sintaxis basada en métodos");
+            paisesUELLinq.ToList().ForEach(p => Console.WriteLine(p));
+            //sintaxis basada en consultas mejor conocidas como query expressions
+            var paisesUELinqB =
+            from p in paisesUE
+            where p.Length > 6
+            select p;
+            Console.WriteLine("sintaxis basada en consultas");
+            paisesUELinqB.ToList().ForEach(p => Console.WriteLine(p));
+        }
         }
     }
-}
